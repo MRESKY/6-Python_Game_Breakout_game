@@ -2,6 +2,7 @@ import pygame
 from entities.paddle import Paddle
 from entities.ball import Ball
 from systems.collision import CollisionSystem
+from systems.ui import UIManager
 
 
 class Breakoutgame:
@@ -12,6 +13,7 @@ class Breakoutgame:
         #Screen setup
         self.screen_width = 800
         self.screen_height = 600
+        pygame.display.set_caption("Breakout Game")
         self.screen = pygame.display.set_mode((self.screen_width, self.screen_height))
         
         self.clock = pygame.time.Clock()
@@ -21,6 +23,11 @@ class Breakoutgame:
         self.paddle = paddle or Paddle(self.screen_width / 2 - 50, self.screen_height - 50)
         self.ball = ball or Ball(self.screen_width / 2 - 10, self.screen_height / 2 - 10, radius=8)
         self.collision_system = collision_system or CollisionSystem()
+
+        self.ui_manager = UIManager()
+        self.score = 0
+        self.lives = 3
+        self.level = 1
 
     def handle_inputs(self):
         # poll for events
@@ -39,6 +46,7 @@ class Breakoutgame:
         self.screen.fill((0, 0, 0))  # Clear screen with black
         self.paddle.draw(self.screen)
         self.ball.draw(self.screen)
+        self.ui_manager.draw_hud(self.screen, self.score, self.lives, self.level)
         pygame.display.flip()  # Update the full display Surface to the screen
         
 
