@@ -1,0 +1,55 @@
+# Byte-code files
+*.pyc
+__pycache__/
+*.pyd
+*.so
+
+# Distribution / packaging
+.Python
+env/
+venv/
+lib/python*/site-packages/
+.env
+.flaskenv
+.venv
+
+# Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+
+# Test files
+.coverage
+.pytest_cache/
+
+# Jupyter Notebook files
+.ipynb_checkpoints/
+
+# Database files
+*.sqlite3
+*.db
+
+# Specific to specific frameworks/libraries
+# Django
+media/
+static/
+
+# Flask
+instance/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
