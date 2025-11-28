@@ -38,9 +38,20 @@ class CollisionSystem(iCollisionSystem):
         return False
 
     @staticmethod
-    def check_ball_brick(ball, brick):
+    def check_ball_brick(ball, bricks):
         # Implement collision detection logic between ball and brick
-        pass
+        destroyed = []
+
+        for brick in bricks:
+            if brick.is_destroyed:
+                continue
+            if ball.rect.colliderect(brick.get_rect()):
+                ball.bounce_y()
+                if brick.take_damage():
+                    destroyed.append(brick)
+        
+        return destroyed
+            
 
     @staticmethod
     def check_ball_walls(ball, wall):

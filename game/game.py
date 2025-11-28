@@ -3,6 +3,9 @@ from entities.paddle import Paddle
 from entities.ball import Ball
 from systems.collision import CollisionSystem
 from systems.ui import UIManager
+from entities.brick import Brick
+from systems.level import LevelManager
+from systems.score import ScoreManager
 
 
 class Breakoutgame:
