@@ -2,7 +2,7 @@ from entities.brick import Brick
 
 class LevelManager:
     def __init__(self):
-        self.current_level = 0
+        self.current_level = 1
         self.bricks_layout = self.create_level_layout()
 
     def create_level_layout(self):
@@ -10,6 +10,10 @@ class LevelManager:
         Pattern layout
         """
         return {
+            # 1: [
+            #     [0, 0, 0, 1, 0, 0, 0, 0],    
+            # ],
+
             1: [
                 [1, 1, 1, 1, 1, 1, 1, 1],  # Row 1
                 [1, 1, 1, 1, 1, 1, 1, 1],  # Row 2

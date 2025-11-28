@@ -17,12 +17,6 @@ class iCollisionSystem(ABC):
         """Override in child class to check collision between two objects."""
         pass
 
-    @staticmethod
-    @abstractmethod
-    def check_ball_walls(ball, wall):
-        """Override in child class to check collision between two objects."""
-        pass
-
 
 class CollisionSystem(iCollisionSystem):
     @staticmethod
@@ -52,8 +46,3 @@ class CollisionSystem(iCollisionSystem):
         
         return destroyed
             
-
-    @staticmethod
-    def check_ball_walls(ball, wall):
-        # Implement collision detection logic between ball and walls
-        pass

@@ -5,10 +5,10 @@ class Ball(GameObject):
     """
     Docstring for Ball
     """
-    def __init__(self, x, y, radius):
-        super().__init__(x, y, width=radius*2, height=radius*2)
+    def __init__(self, x, y):
+        super().__init__(x, y, width=20, height=20)
         self.color = (255, 255, 255)  # White color
-        self.radius = radius
+        self.radius = self.width / 2
         self.velocity = pygame.Vector2(4, -4)  # Initial velocity
 
     def move(self):

@@ -9,7 +9,9 @@ from systems.score import ScoreManager
 
 
 class Breakoutgame:
-    def __init__(self, paddle: Paddle = None, ball: Ball = None, collision_system: CollisionSystem = None):
+    def __init__(self, paddle: Paddle = None, ball: Ball = None, 
+                 collision_system: CollisionSystem = None, score_manager: ScoreManager = None,
+                 level_manager: LevelManager = None):
         # Initialize pygame
         pygame.init()
 
@@ -23,26 +25,47 @@ class Breakoutgame:
         self.fps = 60
         self.running = True
 
-        self.paddle = paddle or Paddle(self.screen_width / 2 - 50, self.screen_height - 50)
-        self.ball = ball or Ball(self.screen_width / 2 - 10, self.screen_height / 2 - 10, radius=8)
+
         self.collision_system = collision_system or CollisionSystem()
+        self.score_manager = score_manager or ScoreManager()
+        self.level_manager = level_manager or LevelManager()
+    
 
         self.ui_manager = UIManager()
         self.score = 0
         self.lives = 3
         self.level = 1
+        self.bricks = []
+        self.reset_game()
+
+    def reset_game(self):
+        self.paddle = Paddle(self.screen_width / 2 - 50, self.screen_height - 50)
+        self.ball = Ball(self.paddle.x + self.paddle.width // 2, self.paddle.y - self.paddle.height)
+        self.bricks = self.level_manager.load_level(self.level)
+
 
     def handle_inputs(self):
         # poll for events
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+                
 
     def update(self):
         # Update game objects
         self.paddle.update()
         self.ball.update()
+
+
         self.collision_system.check_ball_paddle(self.ball, self.paddle)
+
+        destroyed = self.collision_system.check_ball_brick(self.ball, self.bricks)
+        for brick in destroyed:
+            self.score_manager.add_score(brick.point_value)
+        self.score = self.score_manager.score
+        self.level = self.score_manager.level
+
+
         
 
     def draw(self):
@@ -50,7 +73,19 @@ class Breakoutgame:
         self.paddle.draw(self.screen)
         self.ball.draw(self.screen)
         self.ui_manager.draw_hud(self.screen, self.score, self.lives, self.level)
+        for brick in self.bricks:
+            brick.draw(self.screen)
+        
+        active_bricks = [b for b in self.bricks if not b.is_destroyed]
+        if len(active_bricks) == 0:
+            self.score_manager.level +=1
+            self.bricks = self.level_manager.next_level()
+            self.ui_manager.get_level_and_count_down(self.screen, self.level)
+            self.paddle = Paddle(self.screen_width / 2 - 50, self.screen_height - 50)
+            self.ball = Ball(self.paddle.x + self.paddle.width // 2, self.paddle.y - self.paddle.height)
+
         pygame.display.flip()  # Update the full display Surface to the screen
+
         
 
     def run(self):
