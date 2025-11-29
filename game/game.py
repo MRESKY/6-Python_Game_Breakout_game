@@ -32,16 +32,14 @@ class Breakoutgame:
     
 
         self.ui_manager = UIManager()
-        self.score = 0
-        self.lives = 3
-        self.level = 1
         self.bricks = []
+        self.active_bricks = [None]
         self.reset_game()
 
     def reset_game(self):
         self.paddle = Paddle(self.screen_width / 2 - 50, self.screen_height - 50)
         self.ball = Ball(self.paddle.x + self.paddle.width // 2, self.paddle.y - self.paddle.height)
-        self.bricks = self.level_manager.load_level(self.level)
+        self.bricks = self.level_manager.load_level(self.score_manager.level)
 
 
     def handle_inputs(self):
@@ -62,8 +60,29 @@ class Breakoutgame:
         destroyed = self.collision_system.check_ball_brick(self.ball, self.bricks)
         for brick in destroyed:
             self.score_manager.add_score(brick.point_value)
-        self.score = self.score_manager.score
-        self.level = self.score_manager.level
+
+        self.score_manager.score
+        self.score_manager.lives
+        self.score_manager.level
+
+
+        self.active_bricks = [b for b in self.bricks if not b.is_destroyed]
+        if len(self.active_bricks) == 0:
+            self.score_manager.level +=1
+            self.bricks = self.level_manager.next_level()
+            self.ui_manager.get_level_and_count_down(self.screen, self.score_manager.level)
+            self.paddle = Paddle(self.screen_width / 2 - 50, self.screen_height - 50)
+            self.ball = Ball(self.paddle.x + self.paddle.width // 2, self.paddle.y - self.paddle.height)
+
+        if self.ball.y > self.screen_height:
+            self.score_manager.lose_life()
+            if self.score_manager.lives <= 0:
+                self.ui_manager.draw_game_over(self.screen, self.score_manager.score)
+                self.running = False
+            else:
+                self.ui_manager.get_level_and_count_down(self.screen, self.score_manager.level)
+                self.paddle = Paddle(self.screen_width / 2 - 50, self.screen_height - 50)
+                self.ball = Ball(self.paddle.x + self.paddle.width // 2, self.paddle.y - self.paddle.height)
 
 
         
@@ -72,18 +91,11 @@ class Breakoutgame:
         self.screen.fill((0, 0, 0))  # Clear screen with black
         self.paddle.draw(self.screen)
         self.ball.draw(self.screen)
-        self.ui_manager.draw_hud(self.screen, self.score, self.lives, self.level)
+        self.ui_manager.draw_hud(self.screen, self.score_manager.score, self.score_manager.lives, self.score_manager.level)
         for brick in self.bricks:
             brick.draw(self.screen)
         
-        active_bricks = [b for b in self.bricks if not b.is_destroyed]
-        if len(active_bricks) == 0:
-            self.score_manager.level +=1
-            self.bricks = self.level_manager.next_level()
-            self.ui_manager.get_level_and_count_down(self.screen, self.level)
-            self.paddle = Paddle(self.screen_width / 2 - 50, self.screen_height - 50)
-            self.ball = Ball(self.paddle.x + self.paddle.width // 2, self.paddle.y - self.paddle.height)
-
+        
         pygame.display.flip()  # Update the full display Surface to the screen
 
         
