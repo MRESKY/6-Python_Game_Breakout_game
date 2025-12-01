@@ -1,0 +1,167 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Breakout Game Level Patterns",
+    "brick_types": {
+      "0": "Empty space",
+      "1": "Basic brick (1 hit, red)",
+      "2": "Medium brick (2 hits, blue)", 
+      "3": "Strong brick (3 hits, green)",
+      "4": "Super brick (4 hits, yellow)",
+      "5": "Special brick (5 hits, purple)"
+    },
+    "colors": {
+      "1": [255, 100, 100],
+      "2": [100, 100, 255],
+      "3": [100, 255, 100],
+      "4": [255, 255, 100],
+      "5": [255, 100, 255]
+    }
+  },
+  "levels": {
+    "1": {
+      "name": "Getting Started",
+      "description": "Easy introduction level",
+      "pattern": [
+        [0, 0, 0, 1, 1, 0, 0, 0],
+        [0, 0, 1, 1, 1, 1, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0]
+      ]
+    },
+    "2": {
+      "name": "Wall Breaker",
+      "description": "Break through the wall",
+      "pattern": [
+        [1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1],
+        [0, 0, 0, 0, 0, 0, 0, 0]
+      ]
+    },
+    "3": {
+      "name": "Pyramid",
+      "description": "Classic pyramid pattern",
+      "pattern": [
+        [0, 0, 0, 2, 2, 0, 0, 0],
+        [0, 0, 2, 2, 2, 2, 0, 0],
+        [0, 2, 2, 1, 1, 2, 2, 0],
+        [2, 2, 1, 1, 1, 1, 2, 2]
+      ]
+    },
+    "4": {
+      "name": "Checkerboard",
+      "description": "Alternating pattern challenge",
+      "pattern": [
+        [1, 2, 1, 2, 1, 2, 1, 2],
+        [2, 1, 2, 1, 2, 1, 2, 1],
+        [1, 2, 1, 2, 1, 2, 1, 2],
+        [2, 1, 2, 1, 2, 1, 2, 1]
+      ]
+    },
+    "5": {
+      "name": "Diamond Formation",
+      "description": "Diamond shaped challenge",
+      "pattern": [
+        [0, 0, 0, 3, 3, 0, 0, 0],
+        [0, 0, 3, 2, 2, 3, 0, 0],
+        [0, 3, 2, 1, 1, 2, 3, 0],
+        [3, 2, 1, 0, 0, 1, 2, 3],
+        [0, 3, 2, 1, 1, 2, 3, 0],
+        [0, 0, 3, 2, 2, 3, 0, 0],
+        [0, 0, 0, 3, 3, 0, 0, 0]
+      ]
+    },
+    "6": {
+      "name": "Castle Defense",
+      "description": "Defend the castle",
+      "pattern": [
+        [2, 0, 2, 0, 0, 2, 0, 2],
+        [2, 2, 2, 0, 0, 2, 2, 2],
+        [3, 3, 3, 3, 3, 3, 3, 3],
+        [1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1]
+      ]
+    },
+    "7": {
+      "name": "Rainbow Bridge",
+      "description": "Cross the colorful bridge",
+      "pattern": [
+        [1, 1, 0, 0, 0, 0, 1, 1],
+        [2, 2, 2, 0, 0, 2, 2, 2],
+        [3, 3, 3, 3, 3, 3, 3, 3],
+        [4, 4, 4, 4, 4, 4, 4, 4],
+        [3, 3, 3, 3, 3, 3, 3, 3],
+        [2, 2, 2, 0, 0, 2, 2, 2],
+        [1, 1, 0, 0, 0, 0, 1, 1]
+      ]
+    },
+    "8": {
+      "name": "Fortress",
+      "description": "Breakthrough the fortress walls",
+      "pattern": [
+        [4, 4, 4, 4, 4, 4, 4, 4],
+        [3, 0, 0, 3, 3, 0, 0, 3],
+        [3, 0, 2, 2, 2, 2, 0, 3],
+        [3, 0, 2, 1, 1, 2, 0, 3],
+        [3, 0, 2, 2, 2, 2, 0, 3],
+        [3, 0, 0, 3, 3, 0, 0, 3],
+        [4, 4, 4, 4, 4, 4, 4, 4]
+      ]
+    },
+    "9": {
+      "name": "Spiral Challenge",
+      "description": "Navigate the spiral",
+      "pattern": [
+        [4, 4, 4, 4, 4, 4, 4, 4],
+        [4, 0, 0, 0, 0, 0, 0, 3],
+        [4, 0, 3, 3, 3, 3, 0, 3],
+        [4, 0, 3, 0, 0, 2, 0, 3],
+        [4, 0, 3, 0, 2, 2, 0, 3],
+        [4, 0, 3, 0, 0, 0, 0, 3],
+        [4, 0, 0, 0, 0, 0, 0, 3],
+        [4, 4, 4, 4, 4, 4, 4, 4]
+      ]
+    },
+    "10": {
+      "name": "Final Boss",
+      "description": "Ultimate challenge - Good luck!",
+      "pattern": [
+        [5, 5, 5, 5, 5, 5, 5, 5],
+        [5, 4, 4, 4, 4, 4, 4, 5],
+        [5, 4, 3, 3, 3, 3, 4, 5],
+        [5, 4, 3, 2, 2, 3, 4, 5],
+        [5, 4, 3, 2, 2, 3, 4, 5],
+        [5, 4, 3, 3, 3, 3, 4, 5],
+        [5, 4, 4, 4, 4, 4, 4, 5],
+        [5, 5, 5, 5, 5, 5, 5, 5]
+      ]
+    }
+  },
+  "special_levels": {
+    "bonus1": {
+      "name": "Heart Shape",
+      "description": "Break my heart!",
+      "pattern": [
+        [0, 1, 1, 0, 0, 1, 1, 0],
+        [1, 2, 2, 1, 1, 2, 2, 1],
+        [1, 2, 2, 2, 2, 2, 2, 1],
+        [0, 1, 2, 2, 2, 2, 1, 0],
+        [0, 0, 1, 2, 2, 1, 0, 0],
+        [0, 0, 0, 1, 1, 0, 0, 0]
+      ]
+    },
+    "bonus2": {
+      "name": "Star Formation",
+      "description": "Reach for the stars!",
+      "pattern": [
+        [0, 0, 0, 3, 3, 0, 0, 0],
+        [0, 0, 3, 3, 3, 3, 0, 0],
+        [3, 3, 3, 3, 3, 3, 3, 3],
+        [0, 3, 3, 3, 3, 3, 3, 0],
+        [0, 0, 3, 0, 0, 3, 0, 0],
+        [0, 3, 0, 0, 0, 0, 3, 0],
+        [3, 0, 0, 0, 0, 0, 0, 3]
+      ]
+    }
+  }
+}
