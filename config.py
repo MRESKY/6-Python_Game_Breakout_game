@@ -1,0 +1,43 @@
+# Game Constants
+# Screen Settings
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+FPS = 60
+
+# Paddle Settings
+PADDLE_WIDTH = 100
+PADDLE_HEIGHT = 20
+PADDLE_SPEED = 5
+
+# Ball Settings
+BALL_SIZE = 20
+BALL_SPEED_X = 4
+BALL_SPEED_Y = -4
+
+# Game Settings
+INITIAL_LIVES = 3
+POINTS_PER_BRICK = 10
+
+# Colors (RGB)
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+YELLOW = (255, 255, 0)
+ORANGE = (255, 165, 0)
+PURPLE = (128, 0, 128)
+
+# UI Colors
+GAME_OVER_COLOR = (255, 50, 50)
+NEW_RECORD_COLOR = (255, 215, 0)
+HIGH_SCORE_COLOR = (255, 255, 0)
+INSTRUCTION_COLOR = (200, 200, 200)
+
+# Game States
+class GameState:
+    MENU = "MENU"
+    PLAYING = "PLAYING"
+    PAUSED = "PAUSED"
+    GAME_OVER = "GAME_OVER"
+    LEVEL_TRANSITION = "LEVEL_TRANSITION"

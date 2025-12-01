@@ -17,13 +17,13 @@ class ScoreManager:
     def is_game_over(self):
         return self.lives <= 0
     
-    def load_high_score(self, filename="highscore.txt"):
+    def load_high_score(self, filename=".\data\highscore\highscore.txt"):
         try:
             with open(filename, "r") as file:
                 return int(file.read().strip())
         except (FileNotFoundError, ValueError):
             return 0
         
-    def save_high_score(self, filename="highscore.txt"):
+    def save_high_score(self, filename=".\data\highscore\highscore.txt"):
         with open(filename, "w") as file:
             file.write(str(self.high_score))
